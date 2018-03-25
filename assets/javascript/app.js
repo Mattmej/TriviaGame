@@ -44,6 +44,37 @@ Game Plan:
 
 //////////////////////////////////////////////////////////////////////////////////////
 
+/*
+More Detailed Game Plan:
+
+The following occurs if questions have not been exhausted.
+
+* As long as the time > 0, then you can perform actions on the current page.
+
+    actions:
+
+    * A question is displayed.
+    * A skip button is displayed.
+        a. If this button is pressed, then next question displayed.
+    * Buttons with possible answers appear.
+        a. If right answer selected,
+            i. Display "Correct!"
+            ii. # right goes up by 1
+        b. If wrong answer selected,
+            i. Display "Incorrect!"
+            ii. # wrong goes up by 1
+
+* If time === 0,
+    a. Display "Time's up!"
+    b. Answer buttons can no longer be clicked.
+    c. Skip button becomes "next question" button.
+        i. If this button pressed, # skipped goes up by 1.
+        ii. Next question displayed.
+
+
+*/
+
+
 var questions = {
     q1: "Which Pokemon types were added in the second generation of Pokemon games?",
     q2: "What Pokemon type has never had its own gym in any of the Pokemon games?",
@@ -142,8 +173,24 @@ var q10Buttons = [
 
 var buttonArray = [q1Buttons, q2Buttons, q3Buttons, q4Buttons, q5Buttons, q6Buttons, q7Buttons, q8Buttons, q9Buttons, q10Buttons];
 
+// console.log(Object.keys(questions));
+// console.log(Object.values(questions));
+// console.log(Object.values(questions).length);
+console.log(Object.values(questions)[0]);
+
+/*
+In order to express an object's properties as an array, use this:
+
+Object.values(object_name)
+
+
+*/
+
 var timer = 20;
 var intervalId;
+var position = 0;            // a variable that holds question position
+var skipIsClicked = false;
+var answerIsClicked = false;
 
 // function for counting down the timer.
 function countdown() {
@@ -156,15 +203,37 @@ function decrement() {
     timer--;                                                // timer goes down by 1
     $("#time").html(timer + " seconds remaining!");
 
-    if (timer === 0) {
+    if (timer === 0) {                                      // when timer runs out
         stop();
         $("#time").html("Time's up!");
     }
 
 }
 
-function stop() {
+function stop() {                                           // stops the countdown
     clearInterval(intervalId);
 }
 
+function displayQuestion() {                                // displays the question to the screen
+
+
+
+    // for (i = 0; i < Object.values(questions).length; i++) {
+    //     $("#question").html(Object.values(questions)[i]);
+    // }
+    $("#question").html(Object.values(questions)[position]);
+}
+
+
+
+
+
+
+
+
+
+
+
+
 countdown();
+
