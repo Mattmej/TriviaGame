@@ -69,3 +69,76 @@ var correctAnswers = {
     a9: "Fire/Grass",
     a10: "Inkay"
 };
+
+var q1Buttons = [
+    "Ground and Bug",
+    "Dark and Steel",
+    "Steel and Fairy",
+    "Fairy and Ice"
+]
+
+var q2Buttons = [
+    "The Poison Type",
+    "The Ground Type",
+    "The Fairy Type",
+    "The Dark Type"
+]
+
+var q3Buttons = [
+    "Steel and Poison",
+    "Ghost and Dark",
+    "Fire and Fighting",
+    "Electric and Rock",
+]
+
+var q4Buttons = [
+    "Team Galactic",
+    "Team Flare",
+    "Team Plasma",
+    "Team Skull"
+]
+
+var q5Buttons = [
+    "The Psychic Type",
+    "The Ghost Type",
+    "The Rock Type",
+    "The Flying Type"
+]
+
+var q6Buttons = [
+    "The Fighting Type",
+    "The Dragon Type", 
+    "The Dark Type",
+    "The Grass Type"
+]
+
+var q7Buttons = [
+    "Electric, Water, and Fire",
+    "Flying, Electric, and Bug",
+    "Bug, Normal, and Flying",
+    "Fire, Water, and Grass"
+]
+
+var q8Buttons = [
+    "The Flying Type",
+    "The Ground Type",
+    "The Dark Type",
+    "The Poison Type"
+]
+
+var q9Buttons = [
+    "Ghost/Fairy",
+    "Fire/Grass",
+    "Fire/Water",
+    "Electric/Psychic"
+]
+
+var q10Buttons = [
+    "Doublade",
+    "Voltorb",
+    "Baltoy",
+    "Inkay"
+]
+
+var buttonArray = [q1Buttons, q2Buttons, q3Buttons, q4Buttons, q5Buttons, q6Buttons, q7Buttons, q8Buttons, q9Buttons, q10Buttons];
+
