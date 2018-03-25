@@ -1,0 +1,15 @@
+.space {
+    margin-bottom: 20px;
+}
+
+.yellow-bg {
+    background-color: yellow;
+}
+
+.header {
+    text-align: center;
+}
+
+.yellow-outline {
+    border: 3px solid yellow;
+}
