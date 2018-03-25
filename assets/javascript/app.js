@@ -142,3 +142,29 @@ var q10Buttons = [
 
 var buttonArray = [q1Buttons, q2Buttons, q3Buttons, q4Buttons, q5Buttons, q6Buttons, q7Buttons, q8Buttons, q9Buttons, q10Buttons];
 
+var timer = 20;
+var intervalId;
+
+// function for counting down the timer.
+function countdown() {
+    clearInterval(intervalId);
+    intervalId = setInterval(decrement, 1000);              // every 1 second, the decrement function runs.
+}
+
+// function used in the countdown() function
+function decrement() {
+    timer--;                                                // timer goes down by 1
+    $("#time").html(timer + " seconds remaining!");
+
+    if (timer === 0) {
+        stop();
+        $("#time").html("Time's up!");
+    }
+
+}
+
+function stop() {
+    clearInterval(intervalId);
+}
+
+countdown();
