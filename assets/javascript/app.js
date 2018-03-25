@@ -42,3 +42,30 @@ Game Plan:
 
 */
 
+//////////////////////////////////////////////////////////////////////////////////////
+
+var questions = {
+    q1: "Which Pokemon types were added in the second generation of Pokemon games?",
+    q2: "What Pokemon type has never had its own gym in any of the Pokemon games?",
+    q3: "What are the weaknesses of the Fairy type?",
+    q4: "Which team of Pokemon members had a message of Pokemon liberation?",
+    q5: "New Pokemon types were introduced in the second generation to balance which Pokemon type?",
+    q6: "The introduction of the Fairy type in the sixth generation of Pokemon was meant to balance which Pokemon type?",
+    q7: "When beginning their journey, new Pokemon trainers choose a starter Pokemon. These starter Pokemon are of which types?",
+    q8: "Which of these types are super-effective against the Fighting type?",
+    q9: "Which Pokemon type combination has not appeared in any Pokemon yet?",
+    q10: "Which Pokemon can evolve by turning the game system upside-down?"
+};
+
+var correctAnswers = {
+    a1: "Dark and Steel",
+    a2: "The Dark Type",
+    a3: "Steel and Poison",
+    a4: "Team Plasma",
+    a5: "The Psychic Type",
+    a6: "The Dragon Type",
+    a7: "Fire, Water, and Grass",
+    a8: "The Flying Type",
+    a9: "Fire/Grass",
+    a10: "Inkay"
+};
