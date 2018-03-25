@@ -39,17 +39,6 @@ Game Plan:
 5. At the end of the questions,
     a. Display number of correct, incorrect, and skipped answers.
     b. Create a button that, if pressed, reloads the page ("play again" button).
-    
-
-
-
-
-
-
-
-
-
-
-
 
 */
+
