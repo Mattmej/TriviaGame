@@ -74,6 +74,15 @@ The following occurs if questions have not been exhausted.
 
 */
 
+/* 
+Troubleshooting:
+
+1. questionArray loops too quickly
+    * As the array loops, it skips elements (questions).
+    * The skipped questions act as if they are automatically answered (displays "correct" or "wrong" automatically)
+    a. Look at functions in which questionArray is called.
+
+*/
 
 var questions = {
     q1: "Which Pokemon types were added in the second generation of Pokemon games?",
@@ -244,7 +253,7 @@ function skipQuestion() {
     position++;
     skippedQuestions++;
 
-    if (position === Object.values(questions).length) {
+    if (position === questionArray.length) {
         // displayEndScreen();
     }
 
@@ -368,46 +377,46 @@ function displayButtons() {
 
 }
 
-function selectButton() {
-    // for (i = 0; i < 4; i++) {
-    //     $(buttonDivArray[i]).on("click", function() {
-    //         if ($(buttonDivArray[i]).text() == correctArray[position]) {
-    //             rightAnswer();
-    //         }
+// function selectButton() {
+//     // for (i = 0; i < 4; i++) {
+//     //     $(buttonDivArray[i]).on("click", function() {
+//     //         if ($(buttonDivArray[i]).text() == correctArray[position]) {
+//     //             rightAnswer();
+//     //         }
 
-    //         else {
-    //             wrongAnswer();
-    //         }
-    //     })
-    // }
+//     //         else {
+//     //             wrongAnswer();
+//     //         }
+//     //     })
+//     // }
 
-    // for (i = 0; i < 4; i++) {
-    //     $(buttonDivArray[i]).on("click", function() {
-    //         selectedAnswer = $(buttonDivArray[i]).text();
-    //         console.log(selectedAnswer);
-    //         console.log("First element " + $(buttonDivArray[0]).text());
-    //         console.log("Second element " + $(buttonDivArray[1]).text());
+//     // for (i = 0; i < 4; i++) {
+//     //     $(buttonDivArray[i]).on("click", function() {
+//     //         selectedAnswer = $(buttonDivArray[i]).text();
+//     //         console.log(selectedAnswer);
+//     //         console.log("First element " + $(buttonDivArray[0]).text());
+//     //         console.log("Second element " + $(buttonDivArray[1]).text());
 
-    //         if (selectedAnswer === correctArray[position]) {
-    //             rightAnswer();
-    //         }
+//     //         if (selectedAnswer === correctArray[position]) {
+//     //             rightAnswer();
+//     //         }
             
-    //         else {
-    //             wrongAnswer();
-    //         }
-    //     })
-    // }
+//     //         else {
+//     //             wrongAnswer();
+//     //         }
+//     //     })
+//     // }
 
-    selectedAnswer = $(this).text();
-    console.log("Selected answer: " + selectedAnswer);
+//     selectedAnswer = $(this).text();
+//     console.log("Selected answer: " + selectedAnswer);
 
-    if (selectedAnswer === correctArray[position]) {
-        rightAnswer();
-    }
+//     if (selectedAnswer === correctArray[position]) {
+//         rightAnswer();
+//     }
     
-    else {
-        wrongAnswer();
-    }
+//     else {
+//         wrongAnswer();
+//     }
 
 
 
@@ -415,13 +424,13 @@ function selectButton() {
 
 
 
-    // console.log($(buttonDivArray[1]).text());
-    // console.log(correctArray[position]);
+//     // console.log($(buttonDivArray[1]).text());
+//     // console.log(correctArray[position]);
 
-    // console.log($(buttonDivArray[1]).text() == correctArray[position]);
+//     // console.log($(buttonDivArray[1]).text() == correctArray[position]);
 
 
-}
+// }
 
 function clearButtons() {
     for (i = 0; i < buttonArray[position].length; i++) {
