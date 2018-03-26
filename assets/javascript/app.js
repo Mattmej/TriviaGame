@@ -88,6 +88,9 @@ var questions = {
     q10: "Which Pokemon can evolve by turning the game system upside-down?"
 };
 
+var questionArray = Object.values(questions);
+// console.log("Question array: " + questionArray);
+
 var correctAnswers = {
     a1: "Dark and Steel",
     a2: "The Dark Type",
@@ -100,6 +103,8 @@ var correctAnswers = {
     a9: "Fire/Grass",
     a10: "Inkay"
 };
+
+var correctArray = Object.values(correctAnswers);
 
 var q1Buttons = [
     "Ground and Bug",
@@ -171,6 +176,7 @@ var q10Buttons = [
     "Inkay"
 ]
 
+// an array containing smaller arrays
 var buttonArray = [q1Buttons, q2Buttons, q3Buttons, q4Buttons, q5Buttons, q6Buttons, q7Buttons, q8Buttons, q9Buttons, q10Buttons];
 
 // console.log(Object.keys(questions));
@@ -191,6 +197,9 @@ var intervalId;
 var position = 0;            // a variable that holds question position
 var skipIsClicked = false;
 var answerIsClicked = false;
+var correctAnswers = 0;
+var incorrectAnswers = 0;
+var skippedQuestions = 0;
 
 // function for counting down the timer.
 function countdown() {
@@ -206,6 +215,7 @@ function decrement() {
     if (timer === 0) {                                      // when timer runs out
         stop();
         $("#time").html("Time's up!");
+        incorrectAnswers++;
     }
 
 }
@@ -216,12 +226,46 @@ function stop() {                                           // stops the countdo
 
 function displayQuestion() {                                // displays the question to the screen
 
-
-
     // for (i = 0; i < Object.values(questions).length; i++) {
     //     $("#question").html(Object.values(questions)[i]);
     // }
+
+    $("#question").empty();
     $("#question").html(Object.values(questions)[position]);
+}
+
+function skipQuestion() {
+    position++;
+    skippedQuestions++;
+
+    if (position === Object.values(questions).length) {
+        // displayEndScreen();
+    }
+
+    else {
+        displayQuestion();
+    }
+}
+
+function rightAnswer() {
+    correctAnswers++;
+    position++;
+    displayQuestion();
+}
+
+function wrongAnswer() {
+    incorrectAnswers++;
+    position++
+    displayQuestion();
+}
+
+function displayButtons() {
+    for (i = 0; i < buttonArray.length; i++);               // loops through array objects in buttonArray
+
+        for (j = 0; j < buttonArray[i].length - 2; j++); {      // loops through entries in the question button arrays
+            
+        }   
+
 }
 
 
@@ -231,9 +275,20 @@ function displayQuestion() {                                // displays the ques
 
 
 
+// function displayEndScreen() {
 
+// }
+
+//  NOTE: NEED TO DECLARE FUNCTION displayEndScreen LATER!
+
+
+
+/////////////////////////////////////////////////////////////////
+
+// ===== Actual Game =====
 
 
 
 countdown();
+displayQuestion();
 
