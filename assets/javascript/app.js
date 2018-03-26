@@ -184,7 +184,8 @@ var buttonDivArray = ["#btn-1", "#btn-2", "#btn-3", "#btn-4"];
 // console.log(Object.keys(questions));
 // console.log(Object.values(questions));
 // console.log(Object.values(questions).length);
-console.log(Object.values(questions)[0]);
+
+// console.log(Object.values(questions)[0]);
 
 /*
 In order to express an object's properties as an array, use this:
@@ -202,6 +203,7 @@ var answerIsClicked = false;
 var correctAnswers = 0;
 var incorrectAnswers = 0;
 var skippedQuestions = 0;
+var selectedAnswer;
 
 // function for counting down the timer.
 function countdown() {
@@ -233,7 +235,9 @@ function displayQuestion() {                                // displays the ques
     // }
 
     $("#question").empty();
-    $("#question").html(Object.values(questions)[position]);
+    // $("#question").html(Object.values(questions)[position]);
+    $("#question").html(questionArray[position]);
+    console.log("Current question " + questionArray[position]);
 }
 
 function skipQuestion() {
@@ -252,12 +256,14 @@ function skipQuestion() {
 function rightAnswer() {
     correctAnswers++;
     position++;
+    alert("Correct!");
     displayQuestion();
 }
 
 function wrongAnswer() {
     incorrectAnswers++;
-    position++
+    position++;
+    alert("Wrong!");
     displayQuestion();
 }
 
@@ -270,7 +276,10 @@ function displayButtons() {
     // }
 
     for (i = 0; i < buttonArray[position].length; i++) {
-        $(buttonDivArray[i]).html(buttonArray[position][i]);
+        // $(buttonDivArray[i]).empty();
+        $(buttonDivArray[i]).html(buttonArray[position][i]);    // displays the possible answer in the button.
+        console.log($(buttonDivArray[i]).html());
+        // $(buttonDivArray[i]).on("click", selectButton());
     }
 
     /* 
@@ -283,14 +292,148 @@ function displayButtons() {
         i = 3: $("#btn-4").html(q2Buttons[3]);
     */
 
+    //////
+
+    $("#btn-1").on("click", function() {
+        selectedAnswer = $(this).html();
+
+        console.log(selectedAnswer);
+
+        if (selectedAnswer === correctArray[position]) {
+            rightAnswer();
+        }
+
+        else {
+            wrongAnswer();
+        }
+
+        clearButtons();
+
+    })
+
+    $("#btn-2").on("click", function() {
+        selectedAnswer = $(this).html();
+
+        console.log(selectedAnswer);
+
+        if (selectedAnswer === correctArray[position]) {
+            rightAnswer();
+        }
+
+        else {
+            wrongAnswer();
+        }
+
+        clearButtons();
+
+    })
+
+    $("#btn-3").on("click", function() {
+        selectedAnswer = $(this).html();
+
+        console.log(selectedAnswer);
+
+        if (selectedAnswer === correctArray[position]) {
+            rightAnswer();
+        }
+
+        else {
+            wrongAnswer();
+        }
+
+        clearButtons();
+
+    })
+
+    $("#btn-4").on("click", function() {
+        selectedAnswer = $(this).html();
+
+        console.log(selectedAnswer);
+
+        if (selectedAnswer === correctArray[position]) {
+            rightAnswer();
+        }
+
+        else {
+            wrongAnswer();
+        }
+
+        clearButtons();
+    })
+
+    // Add selectButtons() function here.
+    // selectButtons();
+
+    // clearButtons();
 
 }
 
+function selectButton() {
+    // for (i = 0; i < 4; i++) {
+    //     $(buttonDivArray[i]).on("click", function() {
+    //         if ($(buttonDivArray[i]).text() == correctArray[position]) {
+    //             rightAnswer();
+    //         }
+
+    //         else {
+    //             wrongAnswer();
+    //         }
+    //     })
+    // }
+
+    // for (i = 0; i < 4; i++) {
+    //     $(buttonDivArray[i]).on("click", function() {
+    //         selectedAnswer = $(buttonDivArray[i]).text();
+    //         console.log(selectedAnswer);
+    //         console.log("First element " + $(buttonDivArray[0]).text());
+    //         console.log("Second element " + $(buttonDivArray[1]).text());
+
+    //         if (selectedAnswer === correctArray[position]) {
+    //             rightAnswer();
+    //         }
+            
+    //         else {
+    //             wrongAnswer();
+    //         }
+    //     })
+    // }
+
+    selectedAnswer = $(this).text();
+    console.log("Selected answer: " + selectedAnswer);
+
+    if (selectedAnswer === correctArray[position]) {
+        rightAnswer();
+    }
+    
+    else {
+        wrongAnswer();
+    }
 
 
 
+    
 
 
+
+    // console.log($(buttonDivArray[1]).text());
+    // console.log(correctArray[position]);
+
+    // console.log($(buttonDivArray[1]).text() == correctArray[position]);
+
+
+}
+
+function clearButtons() {
+    for (i = 0; i < buttonArray[position].length; i++) {
+        $(buttonDivArray[i]).empty();
+    }
+
+    displayButtons();
+}
+
+// console.log($("#btn-1").html());
+
+// console.log(buttonArray[0][2]);
 
 
 // function displayEndScreen() {
