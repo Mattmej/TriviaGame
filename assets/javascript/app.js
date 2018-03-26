@@ -179,6 +179,8 @@ var q10Buttons = [
 // an array containing smaller arrays
 var buttonArray = [q1Buttons, q2Buttons, q3Buttons, q4Buttons, q5Buttons, q6Buttons, q7Buttons, q8Buttons, q9Buttons, q10Buttons];
 
+var buttonDivArray = ["#btn-1", "#btn-2", "#btn-3", "#btn-4"];
+
 // console.log(Object.keys(questions));
 // console.log(Object.values(questions));
 // console.log(Object.values(questions).length);
@@ -194,7 +196,7 @@ Object.values(object_name)
 
 var timer = 20;
 var intervalId;
-var position = 0;            // a variable that holds question position
+var position = 0;                   // a variable that holds question position
 var skipIsClicked = false;
 var answerIsClicked = false;
 var correctAnswers = 0;
@@ -260,11 +262,27 @@ function wrongAnswer() {
 }
 
 function displayButtons() {
-    for (i = 0; i < buttonArray.length; i++);               // loops through array objects in buttonArray
+    // for (i = 0; i < buttonArray.length; i++) {              // loops through array objects in buttonArray
 
-        for (j = 0; j < buttonArray[i].length - 2; j++); {      // loops through entries in the question button arrays
-            
-        }   
+    //     for (j = 0; j < buttonArray[i].length - 2; j++); {      // loops through entries in the question button arrays
+    //         $(buttonDivArray[j]).html(buttonArray[i][j]);
+    //     }   
+    // }
+
+    for (i = 0; i < buttonArray[position].length; i++) {
+        $(buttonDivArray[i]).html(buttonArray[position][i]);
+    }
+
+    /* 
+    The above loop loops from i = 0 to i = 3.
+        For each loop, adds the ith element of the array at the buttonArray[position] array.
+        e.g. buttonArray[1] has the q2Buttons array, with 4 elements.
+        i = 0: $("#btn-1").html(q2Buttons[0]);
+        i = 1: $("#btn-2").html(q2Buttons[1]);
+        i = 2: $("#btn-3").html(q2Buttons[2]);
+        i = 3: $("#btn-4").html(q2Buttons[3]);
+    */
+
 
 }
 
@@ -291,4 +309,5 @@ function displayButtons() {
 
 countdown();
 displayQuestion();
+displayButtons();
 
