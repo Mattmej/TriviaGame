@@ -81,32 +81,6 @@ Troubleshooting:
     * As the array loops, it skips elements (questions).
     * The skipped questions act as if they are automatically answered (displays "correct" or "wrong" automatically)
     a. Look at functions in which questionArray is called.
-        i. Result: Determined that either the display or the pressing of buttons causes the problem.
-        ii. Most likely cause is the latter.
-    b. 
-
-*/
-
-
-/* 
-Map of Called Functions
-
-If you call displayQuestion(),
-    displayButtons() called.
-        * Displays possible answers in buttons
-        selectButton() called.  
-            * sets button events - for each...
-                * sets selectedAnswer variable
-                * compares text in button with correct answer
-                * clears selectedAnswer after calling the function below
-            rightAnswer() or wrongAnswer() called
-                * position variable increases by 1.
-                * correctAnswers variable increases by 1.
-                * alerts "correct" or "wrong"
-                displayQuestion() called.
-            clearButtons() called.
-                displayButtons() called.
-
 
 */
 
@@ -216,6 +190,12 @@ var buttonArray = [q1Buttons, q2Buttons, q3Buttons, q4Buttons, q5Buttons, q6Butt
 
 var buttonDivArray = ["#btn-1", "#btn-2", "#btn-3", "#btn-4"];
 
+// console.log(Object.keys(questions));
+// console.log(Object.values(questions));
+// console.log(Object.values(questions).length);
+
+// console.log(Object.values(questions)[0]);
+
 /*
 In order to express an object's properties as an array, use this:
 
@@ -259,22 +239,56 @@ function stop() {                                           // stops the countdo
 
 function displayQuestion() {                                // displays the question to the screen
 
+    // for (i = 0; i < Object.values(questions).length; i++) {
+    //     $("#question").html(Object.values(questions)[i]);
+    // }
 
     $("#question").empty();
+    // $("#question").html(Object.values(questions)[position]);
     $("#question").html(questionArray[position]);
     console.log("Current question " + questionArray[position]);
+}
 
-    displayButtons();
+function skipQuestion() {
+    position++;
+    skippedQuestions++;
+
+    if (position === questionArray.length) {
+        // displayEndScreen();
+    }
+
+    else {
+        displayQuestion();
+    }
+}
+
+function rightAnswer() {
+    correctAnswers++;
+    position++;
+    alert("Correct!");
+    displayQuestion();
+}
+
+function wrongAnswer() {
+    incorrectAnswers++;
+    position++;
+    alert("Wrong!");
+    displayQuestion();
 }
 
 function displayButtons() {
+    // for (i = 0; i < buttonArray.length; i++) {              // loops through array objects in buttonArray
 
-    for (i = 0; i < buttonArray[position].length; i++) {        // loops from i = 0 to i = 3 (loops 4 times)
+    //     for (j = 0; j < buttonArray[i].length - 2; j++); {      // loops through entries in the question button arrays
+    //         $(buttonDivArray[j]).html(buttonArray[i][j]);
+    //     }   
+    // }
+
+    for (i = 0; i < buttonArray[position].length; i++) {
         // $(buttonDivArray[i]).empty();
         $(buttonDivArray[i]).html(buttonArray[position][i]);    // displays the possible answer in the button.
-        console.log($(buttonDivArray[i]).html());
+        // console.log($(buttonDivArray[i]).html());
         // $(buttonDivArray[i]).on("click", selectButton());
-        // selectButton();
     }
 
     /* 
@@ -289,13 +303,17 @@ function displayButtons() {
 
     //////
 
-    selectButton();
+   
 
-    
+    // Add selectButtons() function here.
+    // selectButtons();
+
+    // clearButtons();
 
 }
 
 function selectButton() {
+
     $("#btn-1").on("click", function() {
         selectedAnswer = $(this).html();
 
@@ -308,9 +326,7 @@ function selectButton() {
         else {
             wrongAnswer();
         }
-
-        selectedAnswer = "";
-
+        selectedAnswer = null;
         clearButtons();
 
     })
@@ -327,8 +343,7 @@ function selectButton() {
         else {
             wrongAnswer();
         }
-        selectedAnswer = "";
-
+        selectedAnswer = null;
         clearButtons();
 
     })
@@ -345,8 +360,7 @@ function selectButton() {
         else {
             wrongAnswer();
         }
-        selectedAnswer = "";
-
+        selectedAnswer = null;
         clearButtons();
 
     })
@@ -363,49 +377,19 @@ function selectButton() {
         else {
             wrongAnswer();
         }
-        selectedAnswer = "";
-
+        selectedAnswer = null;
         clearButtons();
     })
-
-    // Add selectButtons() function here.
-    // selectButtons();
-
-    // clearButtons();
 }
 
 
 
-function skipQuestion() {
-    position++;
-    skippedQuestions++;
-
-    if (position === questionArray.length) {
-        // displayEndScreen();
-    }
-
-    else {
-        displayQuestion();
-    }
-}
 
 
 
-function rightAnswer() {
-    correctAnswers++;
-    position++;
-    alert("Correct!");
-    displayQuestion();
-}
 
 
 
-function wrongAnswer() {
-    incorrectAnswers++;
-    position++;
-    alert("Wrong!");
-    displayQuestion();
-}
 
 
 function clearButtons() {
@@ -437,5 +421,6 @@ function clearButtons() {
 
 countdown();
 displayQuestion();
-// displayButtons();
+displayButtons();
+selectButton();
 
