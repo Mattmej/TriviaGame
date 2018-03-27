@@ -260,10 +260,21 @@ function decrement() {
         // timer = 5;                                       // for test purposes only
         timer = 1;
 
-        setTimeout(function() {
-            displayQuestion();
-            displayButtons();
-        }, 3000);
+        if (position === questionArray.length-1) {          // if the position variable goes past the length of the questionArray, then...
+
+            setTimeout(function() {
+                displayEndScreen();                             // shows the end screen
+            }, 3000);
+        }
+
+
+        else {
+            setTimeout(function() {
+                displayQuestion();
+                displayButtons();
+            }, 3000);
+        }
+        
        
         // selectButton();
 
@@ -496,9 +507,21 @@ function displayEndScreen() {
     $("#question").empty();
 
     $("#question").toggleClass("d-flex flex-row justify-content-around");
-    $("#question").append("Correct Answers: " + correctAnswers);
-    $("#question").append("Incorrect Answers: " + incorrectAnswers);
-    $("#question").append("Skipped Questions: " + skippedQuestions);
+    // $("#question").append("Correct Answers: " + correctAnswers);
+    // $("#question").append("Incorrect Answers: " + incorrectAnswers);
+    // $("#question").append("Skipped Questions: " + skippedQuestions);
+
+    $("#question").append("<p id = num-correct></p>");
+    $("#num-correct").html("Correct Answers: " + correctAnswers);
+
+    $("#question").append("<p id = num-incorrect></p>");
+    $("#num-incorrect").html("Incorrect Answers: " + incorrectAnswers);
+
+    $("#question").append("<p id = skipped></p>");
+    $("#skipped").html("Skipped Questions: " + skippedQuestions);
+
+
+
 
     $("#skipBtn").attr("id", "play-again");
     $("#skipBtn").removeAttr("#skipBtn");
