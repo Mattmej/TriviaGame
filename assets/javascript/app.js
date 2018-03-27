@@ -218,6 +218,7 @@ Object.values(object_name)
 */
 
 var timer = 20;
+// var timer = 5;                      // for test purposes only
 var intervalId;
 var position = 0;                   // a variable that holds question position
 var skipIsClicked = false;
@@ -235,13 +236,23 @@ function countdown() {
 
 // function used in the countdown() function
 function decrement() {
-    timer--;                                                // timer goes down by 1
     $("#time").html(timer + " seconds remaining!");
+    timer--;                                                // timer goes down by 1
+
 
     if (timer === 0) {                                      // when timer runs out
         stop();
-        $("#time").html("Time's up!");
-        // incorrectAnswers++;
+        // $("#time").html("Time's up!");
+        alert("Time's Up!");
+        incorrectAnswers++;
+        position++;
+        timer = 20;
+        // timer = 5;              // for test purposes only
+
+        displayQuestion();
+        displayButtons();
+        // selectButton();
+
     }
 
 }
@@ -255,6 +266,8 @@ function displayQuestion() {                                // displays the ques
     // for (i = 0; i < Object.values(questions).length; i++) {
     //     $("#question").html(Object.values(questions)[i]);
     // }
+
+    countdown();
 
     $("#question").empty();
     // $("#question").html(Object.values(questions)[position]);
@@ -289,6 +302,8 @@ function rightAnswer() {
 
     else {
         position++;
+        stop();
+        timer = 20;
         displayQuestion();
     }
 }
@@ -307,6 +322,8 @@ function wrongAnswer() {
 
     else {
         position++;
+        stop();
+        timer = 20;
         displayQuestion();
     }
 }
@@ -440,7 +457,7 @@ function displayEndScreen() {
 
 
 
-countdown();
+// countdown();
 displayQuestion();
 displayButtons();
 selectButton();
