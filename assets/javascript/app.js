@@ -555,7 +555,8 @@ function playAgain() {
         correctAnswers = 0;
         incorrectAnswers = 0;
         skippedQuestions = 0;
-
+        
+        $("#question").toggleClass("d-flex flex-row justify-content-around");
         $("#play-again").attr("id", "skipBtn");
         $("#play-again").removeAttr("#play-again");
         $("#skipBtn").html("Skip Question");
