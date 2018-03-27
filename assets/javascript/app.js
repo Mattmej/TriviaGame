@@ -269,16 +269,34 @@ function skipQuestion() {
 
 function rightAnswer() {
     correctAnswers++;
-    position++;
+    console.log("Current Position: " + position);
+    console.log("questionArray.length = " + questionArray.length);
     alert("Correct!");
-    displayQuestion();
+
+    if (position === questionArray.length-1) {
+        displayEndScreen();
+    }
+
+    else {
+        position++;
+        displayQuestion();
+    }
 }
 
 function wrongAnswer() {
     incorrectAnswers++;
-    position++;
+    console.log("Current Position: " + position);
+    console.log("questionArray.length = " + questionArray.length);
     alert("Wrong!");
-    displayQuestion();
+
+    if (position === questionArray.length-1) {
+        displayEndScreen();
+    }
+
+    else {
+        position++;
+        displayQuestion();
+    }
 }
 
 function displayButtons() {
@@ -308,12 +326,7 @@ function displayButtons() {
 
     //////
 
-   
 
-    // Add selectButtons() function here.
-    // selectButtons();
-
-    // clearButtons();
 
 }
 
@@ -322,7 +335,7 @@ function selectButton() {
     $("#btn-1").on("click", function() {
         selectedAnswer = $(this).html();
 
-        console.log(selectedAnswer);
+        // console.log(selectedAnswer);
 
         if (selectedAnswer === correctArray[position]) {
             rightAnswer();
@@ -339,7 +352,7 @@ function selectButton() {
     $("#btn-2").on("click", function() {
         selectedAnswer = $(this).html();
 
-        console.log(selectedAnswer);
+        // console.log(selectedAnswer);
 
         if (selectedAnswer === correctArray[position]) {
             rightAnswer();
@@ -356,7 +369,7 @@ function selectButton() {
     $("#btn-3").on("click", function() {
         selectedAnswer = $(this).html();
 
-        console.log(selectedAnswer);
+        // console.log(selectedAnswer);
 
         if (selectedAnswer === correctArray[position]) {
             rightAnswer();
@@ -373,7 +386,7 @@ function selectButton() {
     $("#btn-4").on("click", function() {
         selectedAnswer = $(this).html();
 
-        console.log(selectedAnswer);
+        // console.log(selectedAnswer);
 
         if (selectedAnswer === correctArray[position]) {
             rightAnswer();
@@ -388,15 +401,6 @@ function selectButton() {
 }
 
 
-
-
-
-
-
-
-
-
-
 function clearButtons() {
     for (i = 0; i < buttonArray[position].length; i++) {
         $(buttonDivArray[i]).empty();
@@ -405,14 +409,11 @@ function clearButtons() {
     displayButtons();
 }
 
-// console.log($("#btn-1").html());
-
-// console.log(buttonArray[0][2]);
 
 
-// function displayEndScreen() {
-
-// }
+function displayEndScreen() {
+    alert("Game Over!");
+}
 
 //  NOTE: NEED TO DECLARE FUNCTION displayEndScreen LATER!
 
