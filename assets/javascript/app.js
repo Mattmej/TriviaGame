@@ -308,7 +308,8 @@ function rightAnswer() {
     correctAnswers++;
     console.log("Correct Answers: " + correctAnswers);
     console.log("Incorrect Answers: " + incorrectAnswers);
-    alert("Correct!");
+    // alert("Correct!");
+    $("#time").html("Correct!");
 
     if (position === questionArray.length-1) {
         displayEndScreen();
@@ -318,7 +319,9 @@ function rightAnswer() {
         position++;
         stop();
         timer = 20;
-        displayQuestion();
+        setTimeout(function() {
+            displayQuestion();
+        }, 3000);
     }
 }
 
@@ -326,7 +329,9 @@ function wrongAnswer() {
     incorrectAnswers++;
     console.log("Correct Answers: " + correctAnswers);
     console.log("Incorrect Answers: " + incorrectAnswers);
-    alert("Wrong!");
+    // alert("Wrong!");
+    $("#time").html("Wrong!");
+    $("#question").html("Correct Answer: " + correctArray[position]);
 
     if (position === questionArray.length-1) {
         displayEndScreen();
@@ -336,7 +341,9 @@ function wrongAnswer() {
         position++;
         stop();
         timer = 20;
-        displayQuestion();
+        setTimeout(function() {
+            displayQuestion();
+        }, 3000);
     }
 }
 
@@ -378,7 +385,12 @@ function selectButton() {
             wrongAnswer();
         }
         selectedAnswer = null;
-        clearButtons();
+
+        setTimeout(function() {
+
+            clearButtons();
+
+        }, 3000);
 
     })
 
@@ -395,7 +407,12 @@ function selectButton() {
             wrongAnswer();
         }
         selectedAnswer = null;
-        clearButtons();
+
+        setTimeout(function() {
+
+            clearButtons();
+
+        }, 3000);
 
     })
 
@@ -412,7 +429,12 @@ function selectButton() {
             wrongAnswer();
         }
         selectedAnswer = null;
-        clearButtons();
+
+        setTimeout(function() {
+            clearButtons();
+
+
+        }, 3000);
 
     })
 
@@ -429,7 +451,12 @@ function selectButton() {
             wrongAnswer();
         }
         selectedAnswer = null;
-        clearButtons();
+
+        setTimeout(function() {
+            clearButtons();
+
+
+        }, 3000);
     })
 }
 
