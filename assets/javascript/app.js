@@ -201,54 +201,59 @@ var q10Buttons = [
 // an array containing smaller arrays
 var buttonArray = [q1Buttons, q2Buttons, q3Buttons, q4Buttons, q5Buttons, q6Buttons, q7Buttons, q8Buttons, q9Buttons, q10Buttons];
 
+// makes appending to the elements with these classes easier
 var buttonDivArray = ["#btn-1", "#btn-2", "#btn-3", "#btn-4"];
+
+/////////////////////////////////
 
 // console.log(Object.keys(questions));
 // console.log(Object.values(questions));
 // console.log(Object.values(questions).length);
-
 // console.log(Object.values(questions)[0]);
+
+/////////////////////////////////
 
 /*
 In order to express an object's properties as an array, use this:
 
 Object.values(object_name)
 
-
 */
 
+
 var timer = 20;
-// var timer = 5;                      // for test purposes only
-var intervalId;
-var position = 0;                   // a variable that holds question position
+// var timer = 5;                                           // for test purposes only
+var intervalId;                                             // for the timer
+var position = 0;                                           // a variable that holds question position
 var skipIsClicked = false;
 var answerIsClicked = false;
 var correctAnswers = 0;
 var incorrectAnswers = 0;
 var skippedQuestions = 0;
-var selectedAnswer;
+var selectedAnswer;                                         // variable to hold the answer user clicked
 
 // function for counting down the timer.
 function countdown() {
-    $("#time").html("");
-    clearInterval(intervalId);
+    $("#time").html("");                                    // one way to make sure the element with the #time id is fully cleared
+    clearInterval(intervalId);                              // makes sure that any current countdown is stopped
     intervalId = setInterval(decrement, 1000);              // every 1 second, the decrement function runs.
 }
 
 // function used in the countdown() function
 function decrement() {
-    $("#time").html(timer + " seconds remaining!");
+    $("#time").html(timer + " seconds remaining!");         // displays the amount of time remaining
     timer--;                                                // timer goes down by 1
 
 
-    if (timer === 0) {                                      // when timer runs out
-        stop();
+    // when timer runs out
+    if (timer === 0) {                                      
+        stop();                                             // stops the countdown
         // $("#time").html("Time's up!");
         alert("Time's Up!");
-        incorrectAnswers++;
-        position++;
-        timer = 20;
-        // timer = 5;              // for test purposes only
+        incorrectAnswers++;                                 // # of incorrect answers increases by 1
+        position++;                                         // goes to next "position"
+        timer = 20;                                         // resets timer to 20.
+        // timer = 5;                                       // for test purposes only
 
         displayQuestion();
         displayButtons();
@@ -258,37 +263,41 @@ function decrement() {
 
 }
 
-function stop() {                                           // stops the countdown
+// stops the countdown
+function stop() {                                      
     clearInterval(intervalId);
 }
 
-function displayQuestion() {                                // displays the question to the screen
+ // displays the question to the screen
+function displayQuestion() {                               
 
     countdown();
 
-    $("#question").empty();
-    $("#question").html(questionArray[position]);
+    $("#question").empty();                                             // empties whatever is in the #question element
+    $("#question").html(questionArray[position]);                       // displays the current question
     console.log("Current question " + questionArray[position]);
 }
 
+// what happens when user clicks the skip button
 function skipQuestion() {
     $("#skipBtn").on("click", function() {
         
         position++;
         skippedQuestions++;
 
-        if (position === questionArray.length) {
-            displayEndScreen();
+        if (position === questionArray.length-1) {          // if the position variable goes past the length of the questionArray, then...
+            displayEndScreen();                             // shows the end screen
         }
 
-        else {
-            displayQuestion();
-            clearButtons();
+        else {                                              // otherwise...
+            displayQuestion();                              // displays the next question
+            clearButtons();                                 // clears the buttons and adds new ones
         }
     })
 
 }
 
+// if the user answers correctly
 function rightAnswer() {
     correctAnswers++;
     console.log("Correct Answers: " + correctAnswers);
@@ -345,23 +354,21 @@ function displayButtons() {
     */
 
     //////
-
-
-
 }
 
+// to make the answer buttons selectable, and to dictate what happens when they are clicked.
 function selectButton() {
 
     $("#btn-1").on("click", function() {
-        selectedAnswer = $(this).html();
+        selectedAnswer = $(this).html();                                // stores the text content of the button
 
         console.log(selectedAnswer);
 
-        if (selectedAnswer === correctArray[position]) {
+        if (selectedAnswer === correctArray[position]) {                // if the selected answer is part of the correctArray, then...
             rightAnswer();
         }
 
-        else if (selectedAnswer != correctArray[position]) {
+        else if (selectedAnswer != correctArray[position]) {            // otherwise...
             wrongAnswer();
         }
         selectedAnswer = null;
@@ -420,7 +427,7 @@ function selectButton() {
     })
 }
 
-
+// to clear the buttons of their displays
 function clearButtons() {
     for (i = 0; i < buttonArray[position].length; i++) {
         $(buttonDivArray[i]).empty();
