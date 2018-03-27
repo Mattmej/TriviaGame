@@ -264,14 +264,9 @@ function stop() {                                           // stops the countdo
 
 function displayQuestion() {                                // displays the question to the screen
 
-    // for (i = 0; i < Object.values(questions).length; i++) {
-    //     $("#question").html(Object.values(questions)[i]);
-    // }
-
     countdown();
 
     $("#question").empty();
-    // $("#question").html(Object.values(questions)[position]);
     $("#question").html(questionArray[position]);
     console.log("Current question " + questionArray[position]);
 }
@@ -296,8 +291,6 @@ function skipQuestion() {
 
 function rightAnswer() {
     correctAnswers++;
-    // console.log("Current Position: " + position);
-    // console.log("questionArray.length = " + questionArray.length);
     console.log("Correct Answers: " + correctAnswers);
     console.log("Incorrect Answers: " + incorrectAnswers);
     alert("Correct!");
@@ -316,8 +309,6 @@ function rightAnswer() {
 
 function wrongAnswer() {
     incorrectAnswers++;
-    // console.log("Current Position: " + position);
-    // console.log("questionArray.length = " + questionArray.length);
     console.log("Correct Answers: " + correctAnswers);
     console.log("Incorrect Answers: " + incorrectAnswers);
     alert("Wrong!");
@@ -335,12 +326,6 @@ function wrongAnswer() {
 }
 
 function displayButtons() {
-    // for (i = 0; i < buttonArray.length; i++) {              // loops through array objects in buttonArray
-
-    //     for (j = 0; j < buttonArray[i].length - 2; j++); {      // loops through entries in the question button arrays
-    //         $(buttonDivArray[j]).html(buttonArray[i][j]);
-    //     }   
-    // }
 
     for (i = 0; i < buttonArray[position].length; i++) {
         // $(buttonDivArray[i]).empty();
@@ -452,9 +437,6 @@ function displayEndScreen() {
     alert("Incorrect answers: " + incorrectAnswers);
     
 }
-
-//  NOTE: NEED TO DECLARE FUNCTION displayEndScreen LATER!
-
 
 
 /////////////////////////////////////////////////////////////////
