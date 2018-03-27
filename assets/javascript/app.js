@@ -241,22 +241,28 @@ function countdown() {
 
 // function used in the countdown() function
 function decrement() {
-    $("#time").html(timer + " seconds remaining!");         // displays the amount of time remaining
     timer--;                                                // timer goes down by 1
+    $("#time").html(timer + " seconds remaining!");         // displays the amount of time remaining
 
 
     // when timer runs out
     if (timer === 0) {                                      
         stop();                                             // stops the countdown
-        // $("#time").html("Time's up!");
-        alert("Time's Up!");
+       
+
+        $("#time").html("Time's up!");
+        $("#question").html("Correct Answer: " + correctArray[position]);
+        // alert("Time's Up!");
         incorrectAnswers++;                                 // # of incorrect answers increases by 1
         position++;                                         // goes to next "position"
         timer = 20;                                         // resets timer to 20.
         // timer = 5;                                       // for test purposes only
 
-        displayQuestion();
-        displayButtons();
+        setTimeout(function() {
+            displayQuestion();
+            displayButtons();
+        }, 3000);
+       
         // selectButton();
 
     }
