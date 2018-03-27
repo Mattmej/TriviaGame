@@ -89,7 +89,11 @@ Troubleshooting:
 
 2. When answering the questions, the count of incorrectly answered questions increases by one randomly.
     a. Specify the "else" statement in the selectButton() function
-        i. Result: 
+        i. Result: No difference
+    b. Found Error!
+        * When timer hits 0, incorrect answers go up by 1. 
+        * But I still need to properly implement the timer function
+        * For now, I commented the offending statement out.
 
 */
 
@@ -237,7 +241,7 @@ function decrement() {
     if (timer === 0) {                                      // when timer runs out
         stop();
         $("#time").html("Time's up!");
-        incorrectAnswers++;
+        // incorrectAnswers++;
     }
 
 }
@@ -349,7 +353,7 @@ function selectButton() {
             rightAnswer();
         }
 
-        else {
+        else if (selectedAnswer != correctArray[position]) {
             wrongAnswer();
         }
         selectedAnswer = null;
@@ -366,7 +370,7 @@ function selectButton() {
             rightAnswer();
         }
 
-        else {
+        else if (selectedAnswer != correctArray[position]) {
             wrongAnswer();
         }
         selectedAnswer = null;
@@ -383,7 +387,7 @@ function selectButton() {
             rightAnswer();
         }
 
-        else {
+        else if (selectedAnswer != correctArray[position]) {
             wrongAnswer();
         }
         selectedAnswer = null;
@@ -400,7 +404,7 @@ function selectButton() {
             rightAnswer();
         }
 
-        else {
+        else if (selectedAnswer != correctArray[position]) {
             wrongAnswer();
         }
         selectedAnswer = null;
