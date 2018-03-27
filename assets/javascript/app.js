@@ -221,9 +221,9 @@ Object.values(object_name)
 */
 
 
-// var timer = 20;
+var timer = 20;
 // var timer = 5;                                           // for test purposes only
-var timer = 1;
+// var timer = 1;
 var intervalId;                                             // for the timer
 var position = 0;                                           // a variable that holds question position
 var skipIsClicked = false;
@@ -256,9 +256,9 @@ function decrement() {
         // alert("Time's Up!");
         incorrectAnswers++;                                 // # of incorrect answers increases by 1
         position++;                                         // goes to next "position"
-        // timer = 20;                                         // resets timer to 20.
+        timer = 20;                                         // resets timer to 20.
         // timer = 5;                                       // for test purposes only
-        timer = 1;
+        // timer = 1;
 
         if (position === questionArray.length-1) {          // if the position variable goes past the length of the questionArray, then...
 
@@ -294,21 +294,28 @@ function displayQuestion() {
 
     $("#question").empty();                                             // empties whatever is in the #question element
     $("#question").html(questionArray[position]);                       // displays the current question
-    console.log("Current question " + questionArray[position]);
+    // console.log("Current question " + questionArray[position]);
 }
 
 // what happens when user clicks the skip button
 function skipQuestion() {
     $("#skipBtn").on("click", function() {
         
-        position++;
+        // position++;
         skippedQuestions++;
+        console.log("Current Position: " + position);
+        console.log("Skipped Questions: " + skippedQuestions);
 
         if (position === questionArray.length-1) {          // if the position variable goes past the length of the questionArray, then...
+            stop();
+            timer = 20;
             displayEndScreen();                             // shows the end screen
         }
 
         else {                                              // otherwise...
+            stop();
+            position++;
+            timer = 20;
             displayQuestion();                              // displays the next question
             clearButtons();                                 // clears the buttons and adds new ones
         }
@@ -319,8 +326,8 @@ function skipQuestion() {
 // if the user answers correctly
 function rightAnswer() {
     correctAnswers++;
-    console.log("Correct Answers: " + correctAnswers);
-    console.log("Incorrect Answers: " + incorrectAnswers);
+    // console.log("Correct Answers: " + correctAnswers);
+    // console.log("Incorrect Answers: " + incorrectAnswers);
     // alert("Correct!");
     $("#time").html("Correct!");
 
@@ -342,8 +349,8 @@ function rightAnswer() {
 
 function wrongAnswer() {
     incorrectAnswers++;
-    console.log("Correct Answers: " + correctAnswers);
-    console.log("Incorrect Answers: " + incorrectAnswers);
+    // console.log("Correct Answers: " + correctAnswers);
+    // console.log("Incorrect Answers: " + incorrectAnswers);
     // alert("Wrong!");
     $("#time").html("Wrong!");
     $("#question").html("Correct Answer: " + correctArray[position]);
@@ -392,7 +399,7 @@ function selectButton() {
     $("#btn-1").on("click", function() {
         selectedAnswer = $(this).html();                                // stores the text content of the button
 
-        console.log(selectedAnswer);
+        // console.log(selectedAnswer);
 
         if (selectedAnswer === correctArray[position]) {                // if the selected answer is part of the correctArray, then...
             rightAnswer();
@@ -416,7 +423,7 @@ function selectButton() {
     $("#btn-2").on("click", function() {
         selectedAnswer = $(this).html();
 
-        console.log(selectedAnswer);
+        // console.log(selectedAnswer);
 
         if (selectedAnswer === correctArray[position]) {
             rightAnswer();
@@ -440,7 +447,7 @@ function selectButton() {
     $("#btn-3").on("click", function() {
         selectedAnswer = $(this).html();
 
-        console.log(selectedAnswer);
+        // console.log(selectedAnswer);
 
         if (selectedAnswer === correctArray[position]) {
             rightAnswer();
@@ -464,7 +471,7 @@ function selectButton() {
     $("#btn-4").on("click", function() {
         selectedAnswer = $(this).html();
 
-        console.log(selectedAnswer);
+        // console.log(selectedAnswer);
 
         if (selectedAnswer === correctArray[position]) {
             rightAnswer();
@@ -520,13 +527,14 @@ function displayEndScreen() {
     $("#question").append("<p id = skipped></p>");
     $("#skipped").html("Skipped Questions: " + skippedQuestions);
 
-
-
+    $("#skipBtn").off("click");
 
     $("#skipBtn").attr("id", "play-again");
     $("#skipBtn").removeAttr("#skipBtn");
 
     $("#play-again").html("Play Again");
+
+    playAgain();
 
 
     
@@ -538,6 +546,25 @@ function stopButtons() {
     $("#btn-3").off("click");
     $("#btn-4").off("click");
     $("#skipBtn").off("click");
+}
+
+function playAgain() {
+    $("#play-again").on("click", function() {
+
+        position = 0;
+        correctAnswers = 0;
+        incorrectAnswers = 0;
+        skippedQuestions = 0;
+
+        $("#play-again").attr("id", "skipBtn");
+        $("#play-again").removeAttr("#play-again");
+        $("#skipBtn").html("Skip Question");
+
+        displayQuestion();
+        displayButtons();
+        skipQuestion();
+
+    })
 }
 
 
