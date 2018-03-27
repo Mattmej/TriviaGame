@@ -230,6 +230,7 @@ var selectedAnswer;
 
 // function for counting down the timer.
 function countdown() {
+    $("#time").html("");
     clearInterval(intervalId);
     intervalId = setInterval(decrement, 1000);              // every 1 second, the decrement function runs.
 }
@@ -276,16 +277,21 @@ function displayQuestion() {                                // displays the ques
 }
 
 function skipQuestion() {
-    position++;
-    skippedQuestions++;
+    $("#skipBtn").on("click", function() {
+        
+        position++;
+        skippedQuestions++;
 
-    if (position === questionArray.length) {
-        // displayEndScreen();
-    }
+        if (position === questionArray.length) {
+            displayEndScreen();
+        }
 
-    else {
-        displayQuestion();
-    }
+        else {
+            displayQuestion();
+            clearButtons();
+        }
+    })
+
 }
 
 function rightAnswer() {
@@ -461,4 +467,5 @@ function displayEndScreen() {
 displayQuestion();
 displayButtons();
 selectButton();
+skipQuestion();
 
