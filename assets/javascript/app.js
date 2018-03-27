@@ -385,11 +385,13 @@ function selectButton() {
             wrongAnswer();
         }
         selectedAnswer = null;
+        stopButtons();
 
         setTimeout(function() {
 
             clearButtons();
-
+            selectButton();
+            skipQuestion();
         }, 3000);
 
     })
@@ -407,11 +409,13 @@ function selectButton() {
             wrongAnswer();
         }
         selectedAnswer = null;
+        stopButtons();
 
         setTimeout(function() {
 
             clearButtons();
-
+            selectButton();
+            skipQuestion();
         }, 3000);
 
     })
@@ -429,10 +433,12 @@ function selectButton() {
             wrongAnswer();
         }
         selectedAnswer = null;
+        stopButtons();
 
         setTimeout(function() {
             clearButtons();
-
+            selectButton();
+            skipQuestion();
 
         }, 3000);
 
@@ -451,10 +457,12 @@ function selectButton() {
             wrongAnswer();
         }
         selectedAnswer = null;
+        stopButtons();
 
         setTimeout(function() {
             clearButtons();
-
+            selectButton();
+            skipQuestion();
 
         }, 3000);
     })
@@ -477,6 +485,16 @@ function displayEndScreen() {
     alert("Incorrect answers: " + incorrectAnswers);
     
 }
+
+function stopButtons() {
+    $("#btn-1").off("click");
+    $("#btn-2").off("click");
+    $("#btn-3").off("click");
+    $("#btn-4").off("click");
+    $("#skipBtn").off("click");
+}
+
+
 
 
 /////////////////////////////////////////////////////////////////
