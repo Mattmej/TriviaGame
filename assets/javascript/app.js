@@ -221,8 +221,9 @@ Object.values(object_name)
 */
 
 
-var timer = 20;
+// var timer = 20;
 // var timer = 5;                                           // for test purposes only
+var timer = 1;
 var intervalId;                                             // for the timer
 var position = 0;                                           // a variable that holds question position
 var skipIsClicked = false;
@@ -255,8 +256,9 @@ function decrement() {
         // alert("Time's Up!");
         incorrectAnswers++;                                 // # of incorrect answers increases by 1
         position++;                                         // goes to next "position"
-        timer = 20;                                         // resets timer to 20.
+        // timer = 20;                                         // resets timer to 20.
         // timer = 5;                                       // for test purposes only
+        timer = 1;
 
         setTimeout(function() {
             displayQuestion();
@@ -312,7 +314,9 @@ function rightAnswer() {
     $("#time").html("Correct!");
 
     if (position === questionArray.length-1) {
-        displayEndScreen();
+        setTimeout(function() {
+            displayEndScreen();
+        }, 3000);
     }
 
     else {
@@ -334,7 +338,9 @@ function wrongAnswer() {
     $("#question").html("Correct Answer: " + correctArray[position]);
 
     if (position === questionArray.length-1) {
-        displayEndScreen();
+        setTimeout(function() {
+            displayEndScreen();
+        }, 3000);
     }
 
     else {
@@ -480,9 +486,26 @@ function clearButtons() {
 
 
 function displayEndScreen() {
-    alert("Game Over!");
-    alert("Correct answers: " + correctAnswers);
-    alert("Incorrect answers: " + incorrectAnswers);
+    // alert("Game Over!");
+    // alert("Correct answers: " + correctAnswers);
+    // alert("Incorrect answers: " + incorrectAnswers);
+
+    $("#time").empty();
+    $("#time").html("Game Over!");
+
+    $("#question").empty();
+
+    $("#question").toggleClass("d-flex flex-row justify-content-around");
+    $("#question").append("Correct Answers: " + correctAnswers);
+    $("#question").append("Incorrect Answers: " + incorrectAnswers);
+    $("#question").append("Skipped Questions: " + skippedQuestions);
+
+    $("#skipBtn").attr("id", "play-again");
+    $("#skipBtn").removeAttr("#skipBtn");
+
+    $("#play-again").html("Play Again");
+
+
     
 }
 
