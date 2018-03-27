@@ -81,6 +81,11 @@ Troubleshooting:
     * As the array loops, it skips elements (questions).
     * The skipped questions act as if they are automatically answered (displays "correct" or "wrong" automatically)
     a. Look at functions in which questionArray is called.
+        i. Result: Found error!
+    b. Explanation: 
+        * Calling the selectButton() function when it was inside of another function caused the selectButton() function to run
+            multiple times for some reason.
+        * I called the function outside of its parent function, and the selectButton() function worked as intended.
 
 */
 
