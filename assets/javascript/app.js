@@ -87,6 +87,10 @@ Troubleshooting:
             multiple times for some reason.
         * I called the function outside of its parent function, and the selectButton() function worked as intended.
 
+2. When answering the questions, the count of incorrectly answered questions increases by one randomly.
+    a. Specify the "else" statement in the selectButton() function
+        i. Result: 
+
 */
 
 var questions = {
@@ -269,8 +273,10 @@ function skipQuestion() {
 
 function rightAnswer() {
     correctAnswers++;
-    console.log("Current Position: " + position);
-    console.log("questionArray.length = " + questionArray.length);
+    // console.log("Current Position: " + position);
+    // console.log("questionArray.length = " + questionArray.length);
+    console.log("Correct Answers: " + correctAnswers);
+    console.log("Incorrect Answers: " + incorrectAnswers);
     alert("Correct!");
 
     if (position === questionArray.length-1) {
@@ -285,8 +291,10 @@ function rightAnswer() {
 
 function wrongAnswer() {
     incorrectAnswers++;
-    console.log("Current Position: " + position);
-    console.log("questionArray.length = " + questionArray.length);
+    // console.log("Current Position: " + position);
+    // console.log("questionArray.length = " + questionArray.length);
+    console.log("Correct Answers: " + correctAnswers);
+    console.log("Incorrect Answers: " + incorrectAnswers);
     alert("Wrong!");
 
     if (position === questionArray.length-1) {
@@ -335,7 +343,7 @@ function selectButton() {
     $("#btn-1").on("click", function() {
         selectedAnswer = $(this).html();
 
-        // console.log(selectedAnswer);
+        console.log(selectedAnswer);
 
         if (selectedAnswer === correctArray[position]) {
             rightAnswer();
@@ -352,7 +360,7 @@ function selectButton() {
     $("#btn-2").on("click", function() {
         selectedAnswer = $(this).html();
 
-        // console.log(selectedAnswer);
+        console.log(selectedAnswer);
 
         if (selectedAnswer === correctArray[position]) {
             rightAnswer();
@@ -369,7 +377,7 @@ function selectButton() {
     $("#btn-3").on("click", function() {
         selectedAnswer = $(this).html();
 
-        // console.log(selectedAnswer);
+        console.log(selectedAnswer);
 
         if (selectedAnswer === correctArray[position]) {
             rightAnswer();
@@ -386,7 +394,7 @@ function selectButton() {
     $("#btn-4").on("click", function() {
         selectedAnswer = $(this).html();
 
-        // console.log(selectedAnswer);
+        console.log(selectedAnswer);
 
         if (selectedAnswer === correctArray[position]) {
             rightAnswer();
@@ -413,6 +421,9 @@ function clearButtons() {
 
 function displayEndScreen() {
     alert("Game Over!");
+    alert("Correct answers: " + correctAnswers);
+    alert("Incorrect answers: " + incorrectAnswers);
+    
 }
 
 //  NOTE: NEED TO DECLARE FUNCTION displayEndScreen LATER!
