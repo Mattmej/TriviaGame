@@ -271,7 +271,7 @@ function decrement() {
         $("#question").html("Correct Answer: " + correctArray[position]);
         // alert("Time's Up!");
         incorrectAnswers++;                                 // # of incorrect answers increases by 1
-        position++;                                         // goes to next "position"
+       
         timer = 20;                                         // resets timer to 20.
         // timer = 5;                                       // for test purposes only
         // timer = 1;
@@ -285,6 +285,8 @@ function decrement() {
 
 
         else {
+
+            position++;                                         // goes to next "position"
             setTimeout(function() {
                 displayQuestion();
                 displayButtons();
