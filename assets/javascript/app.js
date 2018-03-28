@@ -233,6 +233,22 @@ var incorrectAnswers = 0;
 var skippedQuestions = 0;
 var selectedAnswer;                                         // variable to hold the answer user clicked
 
+var bgMusic = document.createElement("audio");
+$(bgMusic).attr("src", "assets/pokemon-theme.mp3");
+bgMusic.loop = true;
+
+
+function playMusic() {
+    bgMusic.play();
+}
+
+
+
+
+
+
+
+
 // function for counting down the timer.
 function countdown() {
     $("#time").html("");                                    // one way to make sure the element with the #time id is fully cleared
@@ -578,6 +594,7 @@ function playAgain() {
 
 
 // countdown();
+playMusic();
 displayQuestion();
 displayButtons();
 selectButton();
